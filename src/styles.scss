@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import 'node_modules/bootstrap/scss/bootstrap';
+
+
+body{
+    background: url(./assets/images/gradient-bg.png) fixed center no-repeat;
+    background-size: 100% 100% ;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: lighter;
+    color: #777;
+}
+img{
+    max-width: 100%;
+}
+h1,h2,h3,h4, h5{
+    font-weight: bold;
+}
+.form-check-label{
+    cursor: pointer;
+}
+
+.card{
+    box-shadow: 0 0 31px rgba(0,0,0,0.3);
+    margin: 40px;
+}
+
+.content-entry{
+    padding: 40px;
+}

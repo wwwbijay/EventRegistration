@@ -1,0 +1,85 @@
+<form>
+    <div class="row mb-3">
+      <div class="form-group col-md-4">
+        <label for="fullname">Full Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="fullname"
+          placeholder=" Name"
+        />
+      </div>
+      <div class="form-group col-md-4">
+        <label for="phone">Phone</label>
+        <input
+          type="text"
+          class="form-control"
+          id="phone"
+          placeholder="Contact Number"
+        />
+      </div>
+      <div class="form-group col-md-4">
+          <label for="inputEmail">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="inputEmail"
+            placeholder="Email"
+          />
+        </div>
+    </div>
+   
+    <div class="form-group mb-3">
+      <label for="inputAddress">Address</label>
+      <input
+        type="text"
+        class="form-control"
+        id="inputAddress"
+        placeholder="1234 Main St"
+      />
+    </div>
+    <div class="row form-row mb-3">
+      <div class="form-group col-md-6">
+        <label for="inputCity">City</label>
+        <input type="text" class="form-control" id="inputCity" />
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputState">Pradesh</label>
+        <select id="inputState" class="form-control">
+          <option selected>Choose...</option>
+          <option *ngFor="let item of pradeshLists" [value]="item.id">{{item.title}}</option>
+
+        </select>
+      </div>
+    </div>
+    
+
+    <h4>How will you be performing?</h4>
+
+    <div class="form-group mb-3">
+      <div class="form-check">
+        <input [(ngModel)]="performanceType" name="performanceType" value="solo" class="form-check-input" type="radio" id="soloPerformance" />
+        <label class="form-check-label" for="soloPerformance">
+          Solo
+        </label>
+      </div>
+      <div class="form-check">
+          <input [(ngModel)]="performanceType" name="performanceType" value="group" class="form-check-input" type="radio" id="groupPerformance" />
+          <label class="form-check-label" for="groupPerformance">
+            Group
+          </label>
+        </div>
+    </div>
+    <div *ngIf="performanceType =='solo'">
+        <h5 class="mb-3">Dancer Information</h5>
+    </div>
+
+    <div *ngIf="performanceType =='group'">
+        <h5 class="mb-3">Group Information</h5>
+    </div>
+
+    <div class="form-group mb-3">
+    <button type="submit" class="btn btn-primary btn-lg btn-block">Continue</button>
+  </div>  
+
+  </form>
