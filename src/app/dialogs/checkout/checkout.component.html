@@ -1,0 +1,58 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title" id="myLargeModalLabel">Checkout</h4>
+    
+    <a class="btn" (click)="_activeModal.dismiss()">
+      <span class="material-symbols-outlined">
+        close
+        </span>
+      </a>
+  </div>
+  <div class="modal-body">
+    
+  <h5>Choose Solo or Group?</h5>
+  <div class="row">
+  <div class="form-group col-md-4 mb-3">    
+    <select id="inputState" class="form-select" [(ngModel)]="performanceType" (change)="TypeChange()">
+      <option value="">Choose...</option>
+      <option value="solo">Solo</option>
+      <option value="group">Group</option>
+    </select>
+  </div>
+</div>
+  <div class="row mb-3">
+    <div class="col-md-6">
+     <h6> <strong>Price:</strong> Rs. {{ eventPrice }}</h6>
+    </div>
+  </div>
+  <div class="mb-3">
+    <p>
+      <span class="material-symbols-outlined">
+        lock
+        </span>
+      Secure payment via MyPay Digital Wallet.
+    </p>
+  </div>
+
+  
+
+
+  <div class="modal-footer">
+    <img class="payment-logo align-left" src="./assets/images/mypay-logo.png"> 
+    <button
+      (click)="_activeModal.dismiss()"
+      type="button"
+      class="btn btn-sm btn-secondary"
+      data-dismiss="modal"
+    >
+      Cancel
+    </button>
+    <button [disabled]="eventPrice < 1" class="btn btn-primary btn-mypay" (click)="checkout()">Pay Via MyPay</button>
+    
+  </div>
+
+
+
+</div>
+
+

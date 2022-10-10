@@ -2,6 +2,7 @@
 
 /* Importing Bootstrap SCSS file. */
 @import 'node_modules/bootstrap/scss/bootstrap';
+@import 'material-icons/iconfont/material-icons.css';
 
 
 body{
@@ -14,18 +15,49 @@ body{
 img{
     max-width: 100%;
 }
-h1,h2,h3,h4, h5{
+h1{
     font-weight: bold;
+}
+h2,h3,h4, h5{
+    font-weight: normal;
+    color: #222;
 }
 .form-check-label{
     cursor: pointer;
 }
-
+.material-symbols-outlined{
+    position: relative;
+    top: 5px;
+}
 .card{
     box-shadow: 0 0 31px rgba(0,0,0,0.3);
     margin: 40px;
 }
-
+.invalid-feedback{
+    display: block;
+}
 .content-entry{
-    padding: 40px;
+    padding: 40px 40px 40px 14px;
+}
+header{
+    padding: 5px 0;
+    border-bottom: 1px solid #ccc;
+}
+.modal-footer{
+    position: relative;
+}
+.modal-footer .payment-logo{
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 120px;
+    margin-top: -21px;
+}
+.btn.btn-mypay{
+    background-color: #e45415;
+    border-color: #e45415;
+}
+.btn.btn-mypay:disabled{
+    background-color: #e99977;
+    border-color: #e45415;
 }

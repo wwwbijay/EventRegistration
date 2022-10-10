@@ -1,85 +1,248 @@
-<form>
-    <div class="row mb-3">
-      <div class="form-group col-md-4">
-        <label for="fullname">Full Name</label>
-        <input
-          type="text"
-          class="form-control"
-          id="fullname"
-          placeholder=" Name"
-        />
-      </div>
-      <div class="form-group col-md-4">
-        <label for="phone">Phone</label>
-        <input
-          type="text"
-          class="form-control"
-          id="phone"
-          placeholder="Contact Number"
-        />
-      </div>
-      <div class="form-group col-md-4">
-          <label for="inputEmail">Email</label>
-          <input
-            type="email"
-            class="form-control"
-            id="inputEmail"
-            placeholder="Email"
-          />
-        </div>
-    </div>
-   
-    <div class="form-group mb-3">
-      <label for="inputAddress">Address</label>
+<header class="mb-5">
+  <h1>Registration Form</h1>
+  <p>Please fill in the following form to register for dance competition.</p>
+</header>
+
+<form #formId="ngForm" [formGroup]="registerForm" (ngSubmit)="register()">
+  <div class="row mb-3">
+    <div class="form-group col-md-4">
+      <label for="fullname">Full Name</label>
       <input
         type="text"
         class="form-control"
-        id="inputAddress"
-        placeholder="1234 Main St"
+        id="fullname"
+        placeholder="Eg: Rajaram Poudel"
+        formControlName="fullname"
       />
+      <small
+        *ngIf="fullname && formId.submitted && fullname.invalid"
+        class="invalid-feedback"
+      >
+        Full Name is required.
+      </small>
     </div>
-    <div class="row form-row mb-3">
-      <div class="form-group col-md-6">
-        <label for="inputCity">City</label>
-        <input type="text" class="form-control" id="inputCity" />
+    <div class="form-group col-md-4">
+      <label for="phone">Phone</label>
+      <input
+        type="number"
+        class="form-control"
+        id="phone"
+        placeholder="Eg: 9851000000"
+        formControlName="phone"
+      />
+      <small
+        *ngIf="phone && formId.submitted && phone.invalid"
+        class="invalid-feedback"
+      >
+        Phone is required.
+      </small>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputEmail">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="inputEmail"
+        placeholder="Eg: mail@company.com"
+        formControlName="email"
+      />
+      <small
+        *ngIf="email && formId.submitted && email.invalid"
+        class="invalid-feedback"
+      >
+        Email is required.
+      </small>
+    </div>
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="inputAddress">Address</label>
+    <input
+      type="text"
+      class="form-control"
+      id="inputAddress"
+      placeholder="Digu Tole, Madhyapur Thimi - 5"
+      formControlName="address"
+    />
+  </div>
+  <div class="row form-row mb-3">
+
+    <div class="form-group col-md-6">
+      <label for="inputCity">City</label>
+      <input type="text" class="form-control" id="inputCity" formControlName="city" />
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputState">Province</label>
+      <select id="inputState" class="form-select" formControlName="pradesh">
+        <option value="0">Choose...</option>
+        <option *ngFor="let item of pradeshLists" [value]="item.id">
+          {{ item.title }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <h4>How will you be performing?</h4>
+
+  <div class="form-group mb-3">
+    <div class="form-check">
+      <input
+        (ngModelChange)="performanceTypeChange($event)"
+        name="performanceType"
+        value="solo"
+        class="form-check-input"
+        type="radio"
+        id="soloPerformance"
+        formControlName="performanceType"
+      />
+      <label class="form-check-label" for="soloPerformance"> Solo </label>
+    </div>
+    <div class="form-check">
+      <input
+      (ngModelChange)="performanceTypeChange($event)"
+        name="performanceType"
+        value="group"
+        class="form-check-input"
+        type="radio"
+        id="groupPerformance"
+        formControlName="performanceType"
+      />
+      <label class="form-check-label" for="groupPerformance"> Group </label>
+    </div>
+    <small
+        *ngIf="email && formId.submitted && email.invalid"
+        class="invalid-feedback"
+      >
+      Please select performance type.
+      </small>
+  </div>
+  <div *ngIf="this.registerForm.value.performanceType == 'solo'">
+    <h5 class="mb-3">Dancer Information</h5>
+    <div class="row mb-3">
+      <div class="form-group col-md-4">
+        <label for="fullname">Full name of participant</label>
+        <input
+          type="text"
+          class="form-control"
+          id="participantName"
+          placeholder="Name"
+          formControlName="participantName"
+        />
+        <small
+        *ngIf="participantName && formId.submitted && participantName.invalid"
+        class="invalid-feedback"
+      >
+        Participant Name is required.
+      </small>
       </div>
       <div class="form-group col-md-4">
-        <label for="inputState">Pradesh</label>
-        <select id="inputState" class="form-control">
-          <option selected>Choose...</option>
-          <option *ngFor="let item of pradeshLists" [value]="item.id">{{item.title}}</option>
-
+        <label for="phone">Gender</label>
+        <select class="form-select" formControlName="gender">
+          <option value="0">Choose...</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="others">Others</option>
         </select>
+        <small
+        *ngIf="gender && formId.submitted && gender.invalid"
+        class="invalid-feedback"
+      >
+        Gender is required.
+      </small>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="age">Age</label>
+        <input
+          type="number"
+          class="form-control"
+          id="age"
+          placeholder="Eg: 18"
+          formControlName="age"
+        />
+        <small
+        *ngIf="age && formId.submitted && age.invalid"
+        class="invalid-feedback"
+      >
+        Age is required.
+      </small>
       </div>
     </div>
-    
+  </div>
 
-    <h4>How will you be performing?</h4>
-
-    <div class="form-group mb-3">
-      <div class="form-check">
-        <input [(ngModel)]="performanceType" name="performanceType" value="solo" class="form-check-input" type="radio" id="soloPerformance" />
-        <label class="form-check-label" for="soloPerformance">
-          Solo
-        </label>
+  <div *ngIf="this.registerForm.value.performanceType == 'group'">
+    <h5 class="mb-3">Group Information</h5>
+    <div class="row mb-3">
+      <div class="form-group col-md-6">
+        <label for="fullname">Group Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="groupName"
+          placeholder="Group Name"
+          formControlName="groupName"
+        />
+        <small
+        *ngIf="groupName && formId.submitted && groupName.invalid"
+        class="invalid-feedback"
+      >
+       Group Name is required.
+      </small>
       </div>
-      <div class="form-check">
-          <input [(ngModel)]="performanceType" name="performanceType" value="group" class="form-check-input" type="radio" id="groupPerformance" />
-          <label class="form-check-label" for="groupPerformance">
-            Group
-          </label>
-        </div>
+      <div class="form-group col-md-6">
+        <label for="phone">No. of Members</label>
+        <input
+          type="number"
+          class="form-control"
+          id="members"
+          placeholder="No of Members in your group"
+          formControlName="noOfMembers"
+        />
+        <small
+        *ngIf="noOfMembers && formId.submitted && noOfMembers.invalid"
+        class="invalid-feedback"
+      >
+        No. of Members is required.
+      </small>
+      </div>
     </div>
-    <div *ngIf="performanceType =='solo'">
-        <h5 class="mb-3">Dancer Information</h5>
+    <div class="row mb-3">
+      <div class="form-group col-md-6">
+        <label for="age">Age Group Range</label>
+        <input
+          type="text"
+          class="form-control"
+          id="age"
+          placeholder="(Min-Max)"
+          formControlName="ageRange"
+        />
+        <small
+        *ngIf="ageRange && formId.submitted && ageRange.invalid"
+        class="invalid-feedback"
+      >
+        Age Group Range is required.
+      </small>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="age">Group Type</label>
+        <select class="form-select" formControlName="groupType">
+          <option selected>Choose...</option>
+          <option value="male">Male Group</option>
+          <option value="female">Female Group</option>
+          <option value="others">Mixed Group</option>
+        </select>
+        <small
+        *ngIf="groupType && formId.submitted && groupType.invalid"
+        class="invalid-feedback"
+      >
+        Group Type is required.
+      </small>
+      </div>
     </div>
+  </div>
 
-    <div *ngIf="performanceType =='group'">
-        <h5 class="mb-3">Group Information</h5>
-    </div>
-
-    <div class="form-group mb-3">
-    <button type="submit" class="btn btn-primary btn-lg btn-block">Continue</button>
-  </div>  
-
-  </form>
+  <div class="form-group mb-3">
+    <input type="submit"  class="btn btn-primary btn-lg btn-block" value="Continue" >
+  </div>
+</form>
