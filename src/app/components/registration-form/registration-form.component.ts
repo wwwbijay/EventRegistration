@@ -115,8 +115,6 @@ export class RegistrationFormComponent implements OnInit {
       const modalRef = this._modalService.open(CheckoutComponent);
       modalRef.componentInstance.orderId = orderId;
 
-
-
     }else {
       let invalidFields: any = [].slice.call(
         document.getElementsByClassName('ng-invalid')
