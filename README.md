@@ -1,6 +1,6 @@
 # Event Registration Form
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.2.
+This is just a simple registration form.
 
 ## Development server
 
